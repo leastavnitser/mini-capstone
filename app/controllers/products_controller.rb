@@ -1,22 +1,32 @@
 class ProductsController < ApplicationController
-  def shop
-    products = Products.all
-    render json: {
-             id: product.id,
-             name: product.name,
-             price: product.price,
-             image_url: product.image_url,
-             description: product.description,
-           }
-  end
-
-  def one_product
-    @product = Product.find_by(id: params[id])
+  def create
+    @product = Product.create(
+      name: params["name"],
+      price: params["price"],
+      image_url: params["image_url"],
+      description: params["description"],
+    )
     render :show
   end
 
-  def all_products
-    @product = Product.all
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.update(
+      name: params["name"] || @product.name,
+      price: params["price"] || @product.price,
+      image_url: params["image_url"] || @product.image_url,
+      description: params["description"] || @product.description,
+    )
+    render :show
+  end
+
+  def show
+    @product = Product.find_by(id: params[:id])
+    render :show
+  end
+
+  def index
+    @products = Product.all
     render :index
   end
 end
