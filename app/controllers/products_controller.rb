@@ -20,6 +20,12 @@ class ProductsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    render json: { message: "Data successfully destroyed!" }
+  end
+
   def show
     @product = Product.find_by(id: params[:id])
     render :show

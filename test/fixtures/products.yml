@@ -3,6 +3,8 @@
 one:
   name: MyString
   price: 1
+  is_discounted?: MyString
+  tax
   image_url: MyString
   description: MyString
 
