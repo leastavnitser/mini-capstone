@@ -7,13 +7,9 @@ class Product < ApplicationRecord
   validates :description, length: { minimum: 20 }, allow_blank: false
   validates :image_url, presence: true
 
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
-
   belongs_to :supplier
   has_many :images
-  has_many :
+  has_many :orders
 
   def is_discounted?
     price <= 10
