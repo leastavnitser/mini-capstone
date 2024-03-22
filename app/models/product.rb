@@ -11,6 +11,7 @@ class Product < ApplicationRecord
     Supplier.find_by(id: supplier_id)
   end
 
+  belongs_to :supplier
   has_many :images
 
   def is_discounted?
